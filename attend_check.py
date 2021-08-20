@@ -151,9 +151,14 @@ class attend_check:
 
         result = {}
         result['sessionAttendMember'] = attend_member
-        result_js = json.dumps(result)
 
-        cv2.imwrite('./attendImg/'+'check '+img, img_cv)
+        try:
+            result_js = json.dumps(result)
 
+            cv2.imwrite('./attendImg/'+'check '+img, img_cv)
+        except:
+            pass
+        
         return result_js
+
 

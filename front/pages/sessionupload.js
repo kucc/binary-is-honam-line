@@ -2,16 +2,19 @@ import React, {useState, useEffect} from 'react'
 import { Button } from 'antd';
 import { Select } from 'antd';
 import { Input } from 'antd';
+import Router from 'next/router';
 import Axios from 'axios';
 const { Option } = Select;
 const { TextArea } = Input;
 import MultipleDatePicker from 'react-multiple-datepicker'
+import Navbar from '../components/Navbar';
 
 function sessionupload() {
     const [userArray, setuserArray] = useState([])
     const [SessionName, setSessionName] = useState("")
     const [SessionLeader, setSessionLeader] = useState("")
-    const [SessionMember, setSessionMember] = useState([])
+    const [SessionMember, setSessionMember] = useState("")
+    const [SessionMemberArray, setSessionMemberArray] = useState([])
     const [SessionDate, setSessionDate] = useState([])
 
 
@@ -24,7 +27,9 @@ function sessionupload() {
     }
 
     const SessionMemberChangeHandler = (e) => {
-        console.log(e)
+        setSessionMember(e)
+        // console.log(e)
+        setSessionMemberArray([...SessionMemberArray, e])
     }
 
     const SessionDateChangeHandler = (e) => {
@@ -41,11 +46,12 @@ function sessionupload() {
 
         const body = {
             // 로그인된 사람의 ID를 가져오기, auth에서 user 값을 return했기 때문에 prop으로 항상 받아올 수가 있음.
-            SessionName: SessionName,
-            SessionLeader: SessionLeader,
-            SessionMember: SessionMember,
-            SessionDate: SessionDate,
+            sessionName: SessionName,
+            sessionLeader: SessionLeader,
+            sessionMember: SessionMemberArray,
+            sessionDate: SessionDate,
         }
+        console.log(body)
         Axios.post('/api/sessions/create', body)
         .then(response=> {
             if(response.data.success){
@@ -53,7 +59,9 @@ function sessionupload() {
                 //랜딩 페이지로 보냄
                 console.log(body)
                 // props.history.push('/')
+                Router.replace('/');
             } else {
+                console.log(response.data.error)
                 alert('업로드에 실패했습니다.')
             }
         })
@@ -78,15 +86,24 @@ function sessionupload() {
     })
   }
 
+  const memberDeleteHandler = (index) => {
+    let newArray = [...SessionMemberArray]
+    newArray.splice(index, 1)
+    setSessionMemberArray(newArray)
+  }
+
   useEffect(() => {
     getProduct()
   }, [])
 
     return (
-        <div className={"mainUploadProducPage"}>
+        <>
+        <Navbar/>
+        <div style={{display:'grid', placeItems:'center', marginTop:'200px'}}>
             <form 
             className={"form_UploadProductPage"}
             onSubmit={submitHandler}
+            style={{width:'500px', display:'grid', gap:'30px'}}
             >
                 <div>
                     <div>세션 이름</div>
@@ -98,20 +115,37 @@ function sessionupload() {
                     <TextArea onChange={SessionLeaderChangeHandler}
                     value={SessionLeader}/>   
                 </div>
-                 멤버
-                <Select style={{ width: 120 }}
-                onChange={SessionMemberChangeHandler} value={SessionMember}>
-                    {userArray.map((item, key) => (
-                        <Option key={key} value={item.name}>{item.name}</Option>
-                    ))}
-                </Select>
-                <MultipleDatePicker onSubmit={dates => console.log(dates)}/>
-                <Button 
-                style={{width:'80px'}}
-                htmlType="submit"
-                >Submit</Button>
+                <div>
+                    멤버
+                    <br/>
+                    <Select
+                    style={{width:'300px'}}
+                    onChange={SessionMemberChangeHandler} value={SessionMember}>
+                        {userArray.map((item, key) => (
+                            <Option key={key} value={item.name}>{item.name}</Option>
+                        ))}
+                    </Select>
+                    {SessionMemberArray[0] &&
+                      SessionMemberArray.map((member, index) => 
+                      // onclick 함수에 데이터를 보내고 싶을때 이렇게 사용!!
+                          <span key={index} onClick={() => memberDeleteHandler(index)}>
+                            <div
+                            style={{width: '100px', height:'20px'}}
+                            >❌{"     "+member}</div>
+                          </span>
+                      )}
+                </div>
+                <div>
+                    활동 날짜
+                    <MultipleDatePicker onSubmit={dates => setSessionDate(dates)}/>
+                    <Button 
+                    style={{width:'80px'}}
+                    htmlType="submit"
+                    >Submit</Button>
+                </div>
             </form>
         </div>
+        </>
     )
 }
 

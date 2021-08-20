@@ -6,6 +6,7 @@ const { upload } = require("./utils/imageUpload");
 
 // 세션 생성
 router.post("/create", (req, res) => {
+  console.log(req.body)
   const session = new Session(req.body);
   session.save((err, doc) => {
     if (err) return res.json({ success: false, err });
@@ -28,9 +29,21 @@ router.post("/create", (req, res) => {
 // 세션 찾기
 router.get("/findSession", (req, res) => {
   let sessionName = req.query.name;
+  console.log(sessionName)
   Session.find({ sessionName: sessionName }).exec((err, sessionInfo) => {
     if (err) return res.status(400).send(err);
     return res.status(200).json({ success: true, sessionInfo });
+  });
+});
+
+// 세션 
+router.get("/sessionList", (req, res) => {
+  Session.find({}, (err, sessionList) => {
+    if (err) {
+      return res.json({ success: false, err });
+    } else {
+      return res.status(200).json({ success: true, sessionList });
+    }
   });
 });
 

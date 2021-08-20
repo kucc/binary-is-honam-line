@@ -11,7 +11,8 @@ import AppLayout from '../components/AppLayout';
 import useInput from '../hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, REGISTER_USER_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
-import FileUpload from './FileUpload';
+import FileUpload from '../components/FileUpload';
+
 
 const ErrorMessage = styled.div`
     color: red;        
@@ -35,8 +36,8 @@ const Signup = () => {
     
     useEffect(() => {
         if (signUpDone) {
-            alert('회원가입을 완료했으니 메인페이지로 이동합니다.');
-            Router.replace('/');
+            alert('회원가입을 완료했으니 로그인 페이지로 이동합니다.');
+            Router.replace('/login');
         }
     }, [signUpDone]);
 

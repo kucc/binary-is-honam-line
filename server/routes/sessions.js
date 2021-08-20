@@ -51,6 +51,7 @@ router.post("/updateSession", (req, res) => {
 router.post("/image", (req, res) => {
   // 가져온 이미지를 저장함.
   upload(req, res, err => {
+    console.log(res.req.file)
     if (err) {
       return res.json({ success: false, err });
     }

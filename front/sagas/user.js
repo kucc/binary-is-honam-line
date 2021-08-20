@@ -24,7 +24,7 @@ import {
 
 // 얼굴 사진 업로드
 function uploadfaceimagesAPI(data) {
-  return axios.post('/user/images', data);
+  return axios.post('/users/image', data);
 }
 
 function* uploadfaceimages(action) {

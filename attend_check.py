@@ -158,7 +158,7 @@ class attend_check:
             cv2.imwrite('./attendImg/'+'check '+img, img_cv)
         except:
             pass
-        
+
         return result_js
 
 

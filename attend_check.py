@@ -1,9 +1,9 @@
 import copy
-
 import dlib, cv2
 import numpy as np
 import os
 import json
+import sys
 
 
 class attend_check:
@@ -68,20 +68,40 @@ class attend_check:
 
             return np.array(face_descriptor)
 
-    def get_descs(self):
+    def get_memberlist(self, list_js):
+
+        img_paths = {}
+
+        list = list_js['userList']
+        for item in list:
+            try:
+                item_js = json.load(item)
+                item_name = item_js['name']
+                item_imgPath = item_js['faceImage']
+                img_paths[item_name] = item_imgPath
+            except:
+                pass
+
+        return img_paths
+
+
+    def get_descs(self, js):
+        list_js = json.load(js)
+
         path = './memberImg_list'
 
         new_descs = {}
-        img_paths = {}
+        img_paths = self.get_memberlist(list_js)
 
-        with os.scandir(path) as list:
-            for data in list:
-                if data.is_file():
-                    item = data.name
-                    member = item.split('.')
-                    img_paths[member[0]] = path + '/' + item
+        #with os.scandir(path) as list:
+        #    for data in list:
+        #        if data.is_file():
+        #            item = data.name
+        #            member = item.split('.')
+        #            img_paths[member[0]] = path + '/' + item
 
-        for name, img_path in img_paths.items():
+        for name, path in img_paths.items():
+            img_path = '/uploads/' + path
             img_bgr = cv2.imread(img_path, cv2.IMREAD_COLOR)
             img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
 

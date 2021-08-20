@@ -45,6 +45,7 @@ const AppLayout = ({ children }) => {
                 <Row gutter={8}>
                     <Col xs={24} md={6}>
                         {me ? <UserProfile /> : <LoginForm />}
+                        
                     </Col>
                     <Col xs={24} md={12}>
                         {children}
@@ -60,7 +61,7 @@ const AppLayout = ({ children }) => {
 };
 
 AppLayout.propTypes = {
-    children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default AppLayout;

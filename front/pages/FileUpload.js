@@ -35,12 +35,13 @@ function FileUpload(props) {
     setimageArray(newArray)
     // 상위 컴포넌트로 보낼 때 함수를 사용
     props.refreshFunction(newArray)
+    setimageExistence(true)
   }
 
   return (
     <>
-    {imageExistence &&
       <div style={{display:'flex', justifyContent: 'space-between'}}>
+      {imageExistence &&
         <Dropzone onDrop={dropHandler}>
           {({getRootProps, getInputProps}) => (
             <div style={{width:'300px', height:'200px', border:'1px solid lightgray', display:'grid', placeItems:'center'}} {...getRootProps()}>
@@ -48,7 +49,7 @@ function FileUpload(props) {
               <div style={{fontWeight:'700', fontSize:'35px', color:'silver'}}>+</div>
             </div>
           )} 
-        </Dropzone>
+        </Dropzone>}
         <div 
         className={'imageArea'} 
         style={{ display: 'flex', width: '350px', height: '215px', overflowX: 'overlay'}}
@@ -70,8 +71,6 @@ function FileUpload(props) {
           )}
         </div>
       </div>
-    
-    }
     </>
   )
 }

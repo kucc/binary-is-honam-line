@@ -11,7 +11,8 @@ import AppLayout from '../components/AppLayout';
 import useInput from '../hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, REGISTER_USER_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
-import FileUpload from './FileUpload';
+import FileUpload from '../components/FileUpload';
+
 
 const ErrorMessage = styled.div`
     color: red;        

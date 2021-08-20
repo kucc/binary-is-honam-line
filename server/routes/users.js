@@ -95,4 +95,12 @@ router.post("/image", (req, res) => {
   });
 });
 
+router.get("/findUser", (req, res) => {
+  let sessionName = req.query.name;
+  Session.find({ sessionName: sessionName }).exec((err, sessionInfo) => {
+    if (err) return res.status(400).send(err);
+    return res.status(200).json({ success: true, sessionInfo });
+  });
+});
+
 module.exports = router;

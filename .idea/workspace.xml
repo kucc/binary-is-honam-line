@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fbc8db33-7c80-408e-839a-bcddad15feef" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1wyPBFYqxS6LKYezGoWoSttbiln" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\PycharmProjects\attend_check\memberImg_list" />
+      <recent name="C:\Users\user\PycharmProjects\attend_check" />
+      <recent name="C:\Users\user\PycharmProjects\attend_check\attendImg" />
+      <recent name="C:\Users\user\PycharmProjects\member_descs.npy" />
+      <recent name="C:\Users\user\PycharmProjects\attend_check\models" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.make_descs">
+    <configuration name="make_descs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="attend_check" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/make_descs.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="run_dect" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="attend_check" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\user\PycharmProjects\attend_check\run_dect.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.make_descs" />
+        <item itemvalue="Python.run_dect" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fbc8db33-7c80-408e-839a-bcddad15feef" name="Default Changelist" comment="" />
+      <created>1629427717679</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1629427717679</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="913" y="274" key="#Notifications" timestamp="1629428348404">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="913" y="274" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1629428348404" />
+    <state x="602" y="223" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1629463747423">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="602" y="223" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1629463747423" />
+    <state x="400" y="283" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1629435889268">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="400" y="283" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1629435889268" />
+    <state width="807" height="466" key="DebuggerActiveHint" timestamp="1629463836982">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="807" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1629463836982" />
+    <state width="1403" height="253" key="GridCell.Tab.0.bottom" timestamp="1629470246096">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1403" height="253" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1629470246096" />
+    <state width="1403" height="253" key="GridCell.Tab.0.center" timestamp="1629470246096">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1403" height="253" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1629470246096" />
+    <state width="1403" height="253" key="GridCell.Tab.0.left" timestamp="1629470246096">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1403" height="253" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1629470246096" />
+    <state width="1403" height="253" key="GridCell.Tab.0.right" timestamp="1629470246096">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1403" height="253" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1629470246096" />
+    <state width="1403" height="253" key="GridCell.Tab.1.bottom" timestamp="1629470244255">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1403" height="253" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1629470244255" />
+    <state width="1403" height="253" key="GridCell.Tab.1.center" timestamp="1629470244255">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1403" height="253" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1629470244255" />
+    <state width="1403" height="253" key="GridCell.Tab.1.left" timestamp="1629470244255">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1403" height="253" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1629470244255" />
+    <state width="1403" height="253" key="GridCell.Tab.1.right" timestamp="1629470244255">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1403" height="253" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1629470244255" />
+    <state x="300" y="26" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1629437729764">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="300" y="26" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1629437729764" />
+    <state x="762" y="0" width="781" height="830" key="dock-window-1" timestamp="1629436426084">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="762" y="0" width="781" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1629436426084" />
+    <state x="350" y="13" width="584" height="804" key="find.popup" timestamp="1629435885869">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="350" y="13" width="584" height="804" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1629435885869" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="data" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

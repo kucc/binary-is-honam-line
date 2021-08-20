@@ -1,13 +1,12 @@
-import React from 'react';
-import { Icon } from 'antd';
-import { Div } from './styles';
+import React from "react";
+import { Div } from "./styles";
 
 function Footer() {
-    return (
-        <Div>
-           <p> Happy Coding  <Icon type="smile" /></p>
-        </Div>
-    );
+  return (
+    <Div>
+      <p> Happy Coding </p>
+    </Div>
+  );
 }
 
 export default Footer;

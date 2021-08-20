@@ -34,7 +34,19 @@ router.get("/findSession", (req, res) => {
   });
 });
 
-router.get("/updateSession");
+// 세션 수정하기
+router.post("/updateSession", (req, res) => {
+  let sessionName = req.query.name;
+  Session.findOneAndUpdate(
+    { sessionName: sessionName },
+    {
+      sessionName: req.body.sessionName,
+      sessionLeader: req.body.sessionLeader,
+      sessionMember: req.body.sessionMember,
+      sessionDate: req.body.sessionDate,
+    }
+  );
+});
 
 router.post("/image", (req, res) => {
   // 가져온 이미지를 저장함.

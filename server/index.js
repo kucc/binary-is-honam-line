@@ -64,6 +64,9 @@ app.use("/test", require("./routes/test"));
 // session router
 app.use("/api/sessions", require("./routes/sessions"));
 
+// post router
+app.use("/api/posts", require("./routes/posts"));
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {

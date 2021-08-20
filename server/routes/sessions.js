@@ -1,4 +1,5 @@
 const express = require("express");
+const { Post } = require("../models/Post");
 const router = express.Router();
 const { Session } = require("../models/Session");
 const { User } = require("../models/User");
@@ -25,7 +26,7 @@ router.post("/create", (req, res) => {
   });
 });
 
-// 세션 찾기
+// 세션 찾기 (쿼리에 아무것도 안넣으면 모든 세션을 불러옴 )
 router.get("/findSession", (req, res) => {
   let sessionName = req.query.name;
   Session.find({ sessionName: sessionName }).exec((err, sessionInfo) => {
@@ -69,7 +70,6 @@ router.post("/updateSession", (req, res) => {
 // 세션 삭제하기 (일단 보류)
 router.get("/deleteSession", (req, res) => {
   let _sessionName = req.query.name;
-  console.log(_sessionName);
   Session.deleteOne({ sessionName: _sessionName }, err => {
     if (err) {
       res.json({ success: false, err });
@@ -79,10 +79,20 @@ router.get("/deleteSession", (req, res) => {
   });
 });
 
+// 한 세션의 포스트 모두 불러오기
+// query ?name=SESSION_NAME 으로 요청
+router.get("/loadPosts", (req, res) => {
+  let _sessionName = req.query.name;
+  Post.find({ sessionName: _sessionName }, (err, postList) => {
+    if (err) return res.json({ err });
+    return res.json({ postList });
+  });
+});
+
 router.post("/image", (req, res) => {
   // 가져온 이미지를 저장함.
   upload(req, res, err => {
-    console.log(res.req.file)
+    console.log(res.req.file);
     if (err) {
       return res.json({ success: false, err });
     }

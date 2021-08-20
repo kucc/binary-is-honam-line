@@ -43,8 +43,7 @@ const Signup = () => {
     const [email, onChangeEmail] = useInput('');
     const [password, onChangePassword] = useInput('');
     const [name, onChangeName] = useInput('');
-    const [Image, setImage] = useState("")
-    // const [faceimage, setFaceimage] = useState('');
+    const [Image, setImage] = useState('');
 
     // 비밀번호 체크는 조금 다른 부분이 있음
     const [passwordCheck, setPasswordCheck] = useState('');
@@ -61,7 +60,6 @@ const Signup = () => {
             password,
             name,
             Image,
-            // faceimage,
           },
         });
       }, [email, password, name, passwordCheck, Image]);
@@ -71,11 +69,10 @@ const Signup = () => {
         setPasswordError(e.target.value !== password);
     }, [password]);
 
-
     const updateImages = (newImages) => {
-        console.log(newImages)
-        setImage(newImages)
-    }
+        console.log(newImages);
+        setImage(newImages);
+    };
 
     return (
         <AppLayout>
@@ -133,8 +130,8 @@ const Signup = () => {
                     />
                     {passwordError && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
                 </div>
-                <div style={{marginTop:'30px'}}>
-                    <FileUpload refreshFunction = {updateImages}/>
+                <div style={{ marginTop: '30px' }}>
+                    <FileUpload refreshFunction={updateImages} />
                 </div>
                 <div style={{ marginTop: 10 }}>
                     <Button type="danger" htmlType="submit" loading={signUpLoading}>가입하기</Button>

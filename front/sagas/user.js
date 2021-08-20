@@ -5,9 +5,6 @@ import {
   LOAD_MY_INFO_FAILURE,
   LOAD_MY_INFO_REQUEST,
   LOAD_MY_INFO_SUCCESS,
-  UPLOAD_IMAGES_FAILURE,
-  UPLOAD_IMAGES_REQUEST,
-  UPLOAD_IMAGES_SUCCESS,
   REGISTER_USER_FAILURE,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
@@ -21,27 +18,6 @@ import {
   LOAD_USERSLIST_FAILURE,
   LOAD_USERSLIST_REQUEST,
 } from '../reducers/user';
-
-// 얼굴 사진 업로드
-function uploadfaceimagesAPI(data) {
-  return axios.post('/users/image', data);
-}
-
-function* uploadfaceimages(action) {
-  try {
-    const result = yield call(uploadfaceimagesAPI, action.data);
-    yield put({
-      type: UPLOAD_IMAGES_SUCCESS,
-      data: result.data,
-    });
-  } catch (err) {
-    console.error(err);
-    yield put({
-      type: UPLOAD_IMAGES_FAILURE,
-      error: err.response.data,
-    });
-  }
-}
 
 // 로그인
 function logInAPI(data) {
@@ -128,7 +104,7 @@ function* loadUsersList(action) {
 
 // 내 정보 불러오기
 function loadMyInfoAPI() {
-  return axios.get('/user');
+  return axios.get('api/users/auth');
 }
 
 function* loadMyInfo(action) {
@@ -167,10 +143,6 @@ function* watchRegisterUser() {
   yield takeLatest(REGISTER_USER_REQUEST, registerUser);
 }
 
-function* watchUpLoadImages() {
-  yield takeLatest(UPLOAD_IMAGES_REQUEST, uploadfaceimages);
-}
-
 export default function* userSaga() {
   yield all([
     fork(watchLoadUsersList),
@@ -178,6 +150,5 @@ export default function* userSaga() {
     fork(watchLogIn),
     fork(watchLogOut),
     fork(watchRegisterUser),
-    fork(watchUpLoadImages),
   ]);
 }

@@ -9,7 +9,10 @@ export const initialState = {
   loadImagesDone: false,
   loadImagesError: null,
   imagesData: null,
+  imagePaths: [],
 };
+
+export const REMOVE_IMAGE = 'REMOVE_IMAGE';
 
 export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
 export const UPLOAD_IMAGES_SUCCESS = 'UPLOAD_IMAGES_SUCCESS';
@@ -21,6 +24,10 @@ export const LOAD_IMAGES_FAILURE = 'LOAD_IMAGES_FAILURE';
 
 const reducer = (state = initialState, action) => produce(state, (draft) => {
   switch (action.type) {
+    case REMOVE_IMAGE:
+      // 서버에서는 이미지를 제거해주지 않고 프론트에서만 제거해줌
+      draft.imagePaths = draft.imagePaths.filter((v, i) => i !== action.data);
+      break;
     case UPLOAD_IMAGES_REQUEST:
       draft.uploadImagesLoading = true;
       draft.uploadImagesError = null;

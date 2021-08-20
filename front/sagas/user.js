@@ -105,7 +105,7 @@ function* registerUser(action) {
   }
 }
 
-// 유저 정보 가져오기
+// 유저 리스트 가져오기
 function loadUsersListAPI(data) {
   return axios.get('/api/users/userList');
 }

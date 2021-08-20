@@ -42,7 +42,7 @@ const Signup = () => {
     const [email, onChangeEmail] = useInput('');
     const [password, onChangePassword] = useInput('');
     const [name, onChangeName] = useInput('');
-    const [faceimage, setFaceimage] = useState('');
+    // const [faceimage, setFaceimage] = useState('');
 
     // 비밀번호 체크는 조금 다른 부분이 있음
     const [passwordCheck, setPasswordCheck] = useState('');
@@ -58,10 +58,10 @@ const Signup = () => {
             email,
             password,
             name,
-            faceimage,
+            // faceimage,
           },
         });
-      }, [email, password, passwordCheck]);
+      }, [email, password, name, passwordCheck]);
     
     const onChangePasswordCheck = useCallback((e) => {
         setPasswordCheck(e.target.value);

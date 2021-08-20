@@ -99,7 +99,10 @@ function sessionupload() {
     return (
         <>
         <Navbar/>
-        <div style={{display:'grid', placeItems:'center', marginTop:'200px'}}>
+        <div style={{display:'grid', placeContent:'center', fontSize:'50px', fontWeight:'bold', marginTop:'150px'}}>
+        세션 정보를 입력해주세요!
+        </div>
+        <div style={{display:'grid', placeItems:'center', marginTop:'30px'}}>
             <form 
             className={"form_UploadProductPage"}
             onSubmit={submitHandler}
@@ -139,7 +142,7 @@ function sessionupload() {
                     활동 날짜
                     <MultipleDatePicker onSubmit={dates => setSessionDate(dates)}/>
                     <Button 
-                    style={{width:'80px'}}
+                    style={{width:'80px', marginTop:'20px'}}
                     htmlType="submit"
                     >Submit</Button>
                 </div>

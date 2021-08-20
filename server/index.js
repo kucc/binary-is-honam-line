@@ -62,10 +62,12 @@ if (process.env.NODE_ENV === "production") {
 app.use("/test", require("./routes/test"));
 
 // session router
-app.use("/api/sessions", require("./routes/sessions"));
 
+app.use("/api/sessions", require("./routes/sessions"));
 // post router
 app.use("/api/posts", require("./routes/posts"));
+// usage router
+app.use("/api/usage", require("./routes/usage"));
 
 const port = process.env.PORT || 5000;
 

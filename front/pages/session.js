@@ -58,52 +58,37 @@ function session() {
       sessionName: Session,
     };
 
-    axios.post("api/posts/create", body).then(response => {
-      if (response.data.success) {
-        console.log(response.data);
-      } else {
-        alert("정보를 불러오는데 실패했습니다.");
-      }
-    });
-  };
+  console.log(RealSessionDate)
+
 
   return (
     <>
-      <Navbar />
-      <div
-        style={{ display: "grid", placeContent: "center", marginTop: "150px" }}
-      >
-        <Form style={{ display: "grid", gap: "30px" }}>
-          {SessionArray && (
-            <Select
-              style={{ width: "300px" }}
-              onChange={SessionChangeHandler}
-              value={Session}
-            >
-              {SessionDateArray.map((item, key) => (
-                <Option key={key} value={item.sessionName}>
-                  {item.sessionName}
-                </Option>
-              ))}
-            </Select>
-          )}
-          {SessionDate && (
-            <Select
-              style={{ width: "300px" }}
-              onChange={SessionDateChangeHandler}
-              value={SessionDate}
-            >
-              {SessionDate.map((item, key) => (
-                <Option key={key} value={item}>
-                  {item.slice(0, 10)}
-                </Option>
-              ))}
-            </Select>
-          )}
-          <FileUpload refreshFunction={updateImages} />
-          <button onClick={submitHandler}>Submit</button>
-        </Form>
+    <Navbar/>
+      <div style={{display:'grid', placeContent:'center', fontSize:'50px', fontWeight:'bold', marginTop:'150px'}}>
+        세션 활동 사항를 입력해주세요!
       </div>
+    <div style={{display:'grid', placeContent:'center', marginTop:'30px'}}>
+      <Form style={{display:'grid', width:'300px', gap:'30px'}}>
+        {SessionArray && <Select 
+        style={{width:'300px'}}
+        onChange={SessionChangeHandler} value={Session}>
+            {SessionDateArray.map((item, key) => (
+                <Option key={key} value={item.sessionName}>{item.sessionName}</Option>
+        ))}
+        </Select>}
+        {SessionDate && <Select 
+        style={{width:'300px'}}
+        onChange={SessionDateChangeHandler} value={RealSessionDate}>
+            {SessionDate.map((item, key) => (
+                <Option key={key} value={item}>{item.slice(0, 10)}</Option>
+        ))}
+        </Select>}
+        <FileUpload refreshFunction={updateImages} />
+        <button
+        style={{width:'300px'}}
+        onClick={submitHandler}>Submit</button>
+      </Form>
+    </div>
     </>
   );
 }

@@ -1,9 +1,12 @@
 import React from 'react';
+import { END } from 'redux-saga';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 
+import { LOAD_MY_INFO_REQUEST } from '../reducers/user';
 import PostForm from '../components/PostForm';
 import AppLayout from '../components/AppLayout';
-// import { LOAD_POSTS_REQUEST } from '../reducers/post';
+import wrapper from '../store/configureStore';
 
 const Home = () => {
 //   const dispatch = useDispatch();
@@ -38,8 +41,7 @@ const Home = () => {
 
   return (
     <AppLayout>
-        <PostForm />
-        {/* {me && <PostForm />} */}
+        {me && <PostForm />}
     </AppLayout>
   );
 };

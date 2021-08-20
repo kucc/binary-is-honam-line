@@ -11,7 +11,8 @@ import AppLayout from '../components/AppLayout';
 import useInput from '../hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, REGISTER_USER_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
-import FileUpload from './FileUpload';
+import FileUpload from '../components/FileUpload';
+
 
 const ErrorMessage = styled.div`
     color: red;        
@@ -35,16 +36,15 @@ const Signup = () => {
     
     useEffect(() => {
         if (signUpDone) {
-            alert('회원가입을 완료했으니 메인페이지로 이동합니다.');
-            Router.replace('/');
+            alert('회원가입을 완료했으니 로그인 페이지로 이동합니다.');
+            Router.replace('/login');
         }
     }, [signUpDone]);
 
     const [email, onChangeEmail] = useInput('');
     const [password, onChangePassword] = useInput('');
     const [name, onChangeName] = useInput('');
-    const [Image, setImage] = useState("")
-    // const [faceimage, setFaceimage] = useState('');
+    const [Image, setImage] = useState('');
 
     // 비밀번호 체크는 조금 다른 부분이 있음
     const [passwordCheck, setPasswordCheck] = useState('');
@@ -61,7 +61,6 @@ const Signup = () => {
             password,
             name,
             Image,
-            // faceimage,
           },
         });
       }, [email, password, name, passwordCheck, Image]);
@@ -71,11 +70,10 @@ const Signup = () => {
         setPasswordError(e.target.value !== password);
     }, [password]);
 
-
     const updateImages = (newImages) => {
-        console.log(newImages)
-        setImage(newImages)
-    }
+        console.log(newImages);
+        setImage(newImages);
+    };
 
     return (
         <AppLayout>
@@ -133,8 +131,8 @@ const Signup = () => {
                     />
                     {passwordError && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
                 </div>
-                <div style={{marginTop:'30px'}}>
-                    <FileUpload refreshFunction = {updateImages}/>
+                <div style={{ marginTop: '30px' }}>
+                    <FileUpload refreshFunction={updateImages} />
                 </div>
                 <div style={{ marginTop: 10 }}>
                     <Button type="danger" htmlType="submit" loading={signUpLoading}>가입하기</Button>

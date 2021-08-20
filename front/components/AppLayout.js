@@ -34,10 +34,10 @@ const AppLayout = ({ children }) => {
     const buttonHandler = () => {
       if (usage === false){
         setusage(true)
-        sendUsage()
+        sendtrueUsage()
       } else{
         setusage(false)
-        sendUsage()
+        sendfalseUsage()
       }
     }
 
@@ -54,9 +54,24 @@ const AppLayout = ({ children }) => {
       })
     }, [])
 
-    const sendUsage = () => {
+    const sendfalseUsage = () => {
       const body = {
-        isUsage: usage
+        isUsage: false
+      }
+
+      axios.post('/api/usage/create', body)
+      .then(response => {
+        if (response.data.success){
+          console.log(response.data)
+        } else{
+          alert("동방 사용 정보를 가져오는데 실패했습니다.")
+        }
+      })
+    }
+
+    const sendtrueUsage = () => {
+      const body = {
+        isUsage: true
       }
 
       axios.post('/api/usage/create', body)

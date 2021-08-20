@@ -16,7 +16,7 @@ router.post("/create", (req, res) => {
   //     success: true, 
   //   });
   // });
-  Usage.findOneAndUpdate({}, {isUsage: req.body.isUsage }, (err, users) =>{
+  Usage.findOneAndUpdate({}, {isUsage:req.body.isUsage }, (err, users) =>{
       console.log(users); // 모든 유저 정보 출력
     });
 });

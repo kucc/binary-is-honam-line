@@ -68,8 +68,11 @@ function session() {
   return (
     <>
     <Navbar/>
-    <div style={{display:'grid', placeContent:'center', marginTop:'150px'}}>
-      <Form style={{display:'grid', gap:'30px'}}>
+      <div style={{display:'grid', placeContent:'center', fontSize:'50px', fontWeight:'bold', marginTop:'150px'}}>
+        세션 정보를 입력해주세요!
+      </div>
+    <div style={{display:'grid', placeContent:'center', marginTop:'30px'}}>
+      <Form style={{display:'grid', width:'300px', gap:'30px'}}>
         {SessionArray && <Select 
         style={{width:'300px'}}
         onChange={SessionChangeHandler} value={Session}>
@@ -85,7 +88,9 @@ function session() {
         ))}
         </Select>}
         <FileUpload refreshFunction={updateImages} />
-        <button onClick={submitHandler}>Submit</button>
+        <button
+        style={{width:'300px'}}
+        onClick={submitHandler}>Submit</button>
       </Form>
     </div>
     </>

@@ -3,6 +3,7 @@ const router = express.Router();
 const { User } = require("../models/User");
 
 const { auth } = require("../middleware/auth");
+const { upload } = require("./utils/imageUpload");
 
 //=================================
 //             User
@@ -77,6 +78,20 @@ router.get("/userList", (req, res) => {
     } else {
       return res.status(200).json({ success: true, userList });
     }
+  });
+});
+
+router.post("/image", (req, res) => {
+  // 가져온 이미지를 저장함.
+  upload(req, res, err => {
+    if (err) {
+      return res.json({ success: false, err });
+    }
+    return res.json({
+      success: true,
+      filePath: res.req.file.path,
+      fileName: res.req.file.filename,
+    });
   });
 });
 

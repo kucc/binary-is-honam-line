@@ -9,14 +9,14 @@ const Home = () => {
 //   const dispatch = useDispatch();
   const { me } = useSelector((state) => state.user);
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: LOAD_USER_REQUEST,
-  //   });
-  //   dispatch({
-  //     type: LOAD_POSTS_REQUEST,
-  //   });
-  // }, []);
+//   useEffect(() => {
+//     dispatch({
+//       type: LOAD_USER_REQUEST,
+//     });
+//     dispatch({
+//       type: LOAD_POSTS_REQUEST,
+//     });
+//   }, []);
 
 //   useEffect(() => {
 //     function onScroll() {
@@ -38,7 +38,8 @@ const Home = () => {
 
   return (
     <AppLayout>
-      {me && <PostForm />}
+        <PostForm />
+        {/* {me && <PostForm />} */}
     </AppLayout>
   );
 };

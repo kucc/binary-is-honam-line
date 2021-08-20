@@ -5,11 +5,18 @@ const { Session } = require("../models/Session");
 const router = express.Router();
 
 router.post("/", (req, res) => {
+  let session = new Session({
+    sessionName: "test2",
+  });
+
+  session.save();
+
   let body = {
-    name: "test1",
-    email: "test1@naver.com",
-    session: new Session({}),
+    name: "test2",
+    email: "test2@naver.com",
+    session: session._id,
   };
+
   const user = new User(body);
 
   user.save((err, doc) => {

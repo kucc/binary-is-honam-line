@@ -9,6 +9,9 @@ function Navbar() {
           <Menu.Item>
               <Link href="/"><img src="/img/kucc.png" style={{height:'80px'}}/></Link>
           </Menu.Item>
+          <Menu.Item>
+            <Link href="/sessionupload"><a>세션 업로드</a></Link>
+          </Menu.Item>
       </Menu>
       <Menu mode="horizontal" style={{float:'right'}}>
           <Menu.Item>

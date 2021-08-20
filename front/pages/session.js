@@ -64,12 +64,14 @@ function session() {
     // post 작성해주세요
   }
 
+  console.log(RealSessionDate)
+
 
   return (
     <>
     <Navbar/>
       <div style={{display:'grid', placeContent:'center', fontSize:'50px', fontWeight:'bold', marginTop:'150px'}}>
-        세션 정보를 입력해주세요!
+        세션 활동 사항를 입력해주세요!
       </div>
     <div style={{display:'grid', placeContent:'center', marginTop:'30px'}}>
       <Form style={{display:'grid', width:'300px', gap:'30px'}}>
@@ -82,7 +84,7 @@ function session() {
         </Select>}
         {SessionDate && <Select 
         style={{width:'300px'}}
-        onChange={SessionDateChangeHandler} value={SessionDate}>
+        onChange={SessionDateChangeHandler} value={RealSessionDate}>
             {SessionDate.map((item, key) => (
                 <Option key={key} value={item}>{item.slice(0, 10)}</Option>
         ))}

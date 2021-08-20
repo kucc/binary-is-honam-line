@@ -33,13 +33,11 @@ const AppLayout = ({ children }) => {
 
     const buttonHandler = () => {
       if (usage === false){
-        sendUsage()
         setusage(true)
-        setusageShower("사용중")
-      } else{
         sendUsage()
+      } else{
         setusage(false)
-        setusageShower("비었음")
+        sendUsage()
       }
     }
 
@@ -48,7 +46,8 @@ const AppLayout = ({ children }) => {
       .then(response => {
         console.log(response.data)
         if (response.data.success){
-          console.log(response.data)
+          console.log(response.data.sendingUsage.isUsage)
+          setusage(response.data.sendingUsage.isUsage)
         } else{
           alert("동방 사용 정보를 가져오는데 실패했습니다.")
         }
@@ -77,7 +76,9 @@ const AppLayout = ({ children }) => {
                 <Navbar/>
                 <div style={{display:'grid', placeItems:'center'}}>
                   <div style={{fontSize:'50px', fontWeight:'bold', marginTop:'30px'}}>
-                    지금 동방은? <span style={{fontSize:'70px', color:'tomato'}}>{usageShower}</span>
+                    지금 동방은? <span style={{fontSize:'70px', color:'tomato'}}>{
+                    usage ? "사용중!" : "비었음!"
+                    }</span>
                   </div>
                   <img onClick={buttonHandler} src="img/button.jpeg" style={{width:'500px'}}></img> 
                 </div>

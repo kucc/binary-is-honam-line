@@ -8,7 +8,5 @@ const usageSchema = mongoose.Schema({
   }
 });
 
-
-
 const Usage = mongoose.model("Usage", usageSchema);
 module.exports = { Usage };

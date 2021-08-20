@@ -31,20 +31,31 @@ const AppLayout = ({ children }) => {
         <div>
             <div>
                 <Global />
-                <Menu mode="horizontal">
-                    <Menu.Item>
-                        <Link href="/"><a>메인 페이지</a></Link>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <Link href="/session"><a>세션 사진 업로드</a></Link>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <Link href="/??"><a>잡담 페이지</a></Link>
-                    </Menu.Item>
-                </Menu>
+                <div style={{height:'50px'}}>
+                  <Menu mode="horizontal" style={{float:'left'}}>
+                      <Menu.Item>
+                          <Link href="/"><a>메인 페이지</a></Link>
+                      </Menu.Item>
+                      <Menu.Item>
+                          <Link href="/session"><a>세션 사진 업로드</a></Link>
+                      </Menu.Item>
+                      <Menu.Item>
+                          <Link href="/??"><a>잡담 페이지</a></Link>
+                      </Menu.Item>
+                  </Menu>
+                  <Menu mode="horizontal" style={{float:'right'}}>
+                      <Menu.Item>
+                          <Link href="/session"><a>회원</a></Link>
+                      </Menu.Item>
+                      <Menu.Item>
+                          <Link href="/login"><a>로그인</a></Link>
+                      </Menu.Item>
+                  </Menu>
+                </div>
+                
                 <Row gutter={8}>
                     <Col xs={24} md={6}>
-                        {me ? <UserProfile /> : <LoginForm />}
+                        {/* {me ? <UserProfile /> : <LoginForm />} */}
                         
                     </Col>
                     <Col xs={24} md={12}>

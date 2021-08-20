@@ -33,28 +33,30 @@ const LoginForm = () => {
   }, [email, password]);
 
   return (
-    <FormWrapper onFinish={onSubmitForm}>
-      <div>
-        <label htmlFor="user-email">이메일</label>
-        <br />
-        <Input name="user-email" type="email" value={email} onChange={onChangeEmail} required />
-      </div>
-      <div>
-        <label htmlFor="user-password">비밀번호</label>
-        <br />
-        <Input
-          name="user-password"
-          type="password"
-          value={password}
-          onChange={onChangePassword}
-          required
-        />
-      </div>
-      <ButtonWrapper>
-        <Button type="primary" htmlType="submit" loading={logInLoading}>로그인</Button>
-        <Link href="/signup"><a><Button>회원가입</Button></a></Link>
-      </ButtonWrapper>
-    </FormWrapper>
+    <div style={{display:'grid', placeItems:'center', marginTop:'200px'}}>
+      <a href="/"><img src={"img/kucc.png"} style={{width:'200px'}}></img></a>
+      <FormWrapper onFinish={onSubmitForm} style={{width:'500px', display:'grid', gap:'20px'}}>
+        <div>
+          <label htmlFor="user-email">이메일</label>
+          <br />
+          <Input name="user-email" type="email" value={email} onChange={onChangeEmail} required />
+        </div>
+        <div>
+          <label htmlFor="user-password">비밀번호</label>
+          <br />
+          <Input
+            name="user-password"
+            type="password"
+            value={password}
+            onChange={onChangePassword}
+            required
+          />
+        </div>
+          <Button type="danger" htmlType="submit" loading={logInLoading}>로그인</Button>
+          <span>계정이 없으신가요?<a href="/signup"> 회원가입</a></span>
+      </FormWrapper>
+
+    </div>
   );
 };
 

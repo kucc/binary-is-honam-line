@@ -53,7 +53,7 @@ const PostForm = () => {
                 onChange={onChangeImages}
                 />
                 <Button style={{ marginTop: '10px' }} onClick={onClickImageUpload}>이미지 업로드</Button>
-                <Button type="primary" style={{ marginTop: '10px', float: 'right' }} htmlType="submit">올리기</Button>
+                <Button type="danger" style={{ marginTop: '10px', float: 'right' }} htmlType="submit">올리기</Button>
             </div>
             <div>
                 {imagePaths.map((v, i) => (

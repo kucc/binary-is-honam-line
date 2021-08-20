@@ -11,6 +11,7 @@ import AppLayout from '../components/AppLayout';
 import useInput from '../hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, REGISTER_USER_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
+import FileUpload from './FileUpload';
 
 const ErrorMessage = styled.div`
     color: red;        
@@ -42,6 +43,7 @@ const Signup = () => {
     const [email, onChangeEmail] = useInput('');
     const [password, onChangePassword] = useInput('');
     const [name, onChangeName] = useInput('');
+    const [Image, setImage] = useState("")
     // const [faceimage, setFaceimage] = useState('');
 
     // 비밀번호 체크는 조금 다른 부분이 있음
@@ -58,27 +60,34 @@ const Signup = () => {
             email,
             password,
             name,
+            Image,
             // faceimage,
           },
         });
-      }, [email, password, name, passwordCheck]);
+      }, [email, password, name, passwordCheck, Image]);
     
     const onChangePasswordCheck = useCallback((e) => {
         setPasswordCheck(e.target.value);
         setPasswordError(e.target.value !== password);
     }, [password]);
 
+
+    const updateImages = (newImages) => {
+        console.log(newImages)
+        setImage(newImages)
+    }
+
     return (
         <AppLayout>
             <Head>
-                <title>회원가입 | Nodebird</title>
+                <title>회원가입 | KUCC</title>
             </Head>
             <Form
                 style={{ width: 400, margin: 'auto', marginTop: 10 }} 
                 onFinish={onSubmit}
             >
                 <div>
-                    <label htmlFor="user-email">아이디</label>
+                    <label htmlFor="user-email">이메일</label>
                     <br />
                     <Input 
                         name="user-email" 
@@ -124,28 +133,28 @@ const Signup = () => {
                     />
                     {passwordError && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
                 </div>
-                <div>
-                    여기에 자기 정면 사진 업로드 올리기
+                <div style={{marginTop:'30px'}}>
+                    <FileUpload refreshFunction = {updateImages}/>
                 </div>
                 <div style={{ marginTop: 10 }}>
-                    <Button type="primary" htmlType="submit" loading={signUpLoading}>가입하기</Button>
+                    <Button type="danger" htmlType="submit" loading={signUpLoading}>가입하기</Button>
                 </div>
             </Form>
         </AppLayout>
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-    const cookie = context.req ? context.req.headers.cookie : '';
-    axios.defaults.headers.Cookie = '';
-    if (context.req && cookie) {
-      axios.defaults.headers.Cookie = cookie;
-    }
-    context.store.dispatch({
-      type: LOAD_MY_INFO_REQUEST,
-    });
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
-  });
+// export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+//     const cookie = context.req ? context.req.headers.cookie : '';
+//     axios.defaults.headers.Cookie = '';
+//     if (context.req && cookie) {
+//       axios.defaults.headers.Cookie = cookie;
+//     }
+//     context.store.dispatch({
+//       type: LOAD_MY_INFO_REQUEST,
+//     });
+//     context.store.dispatch(END);
+//     await context.store.sagaTask.toPromise();
+//   });
 
 export default Signup;

@@ -13,6 +13,13 @@ const sessionSchema = mongoose.Schema({
   sessionMember: [
     {
       type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+
+  sessionDate: [
+    {
+      type: Date,
     },
   ],
 });

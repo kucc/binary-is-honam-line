@@ -78,7 +78,7 @@ const Signup = () => {
                 onFinish={onSubmit}
             >
                 <div>
-                    <label htmlFor="user-email">아이디</label>
+                    <label htmlFor="user-email">이메일</label>
                     <br />
                     <Input 
                         name="user-email" 
@@ -128,24 +128,24 @@ const Signup = () => {
                     여기에 자기 정면 사진 업로드 올리기
                 </div>
                 <div style={{ marginTop: 10 }}>
-                    <Button type="primary" htmlType="submit" loading={signUpLoading}>가입하기</Button>
+                    <Button type="danger" htmlType="submit" loading={signUpLoading}>가입하기</Button>
                 </div>
             </Form>
         </AppLayout>
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-    const cookie = context.req ? context.req.headers.cookie : '';
-    axios.defaults.headers.Cookie = '';
-    if (context.req && cookie) {
-      axios.defaults.headers.Cookie = cookie;
-    }
-    context.store.dispatch({
-      type: LOAD_MY_INFO_REQUEST,
-    });
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
-  });
+// export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+//     const cookie = context.req ? context.req.headers.cookie : '';
+//     axios.defaults.headers.Cookie = '';
+//     if (context.req && cookie) {
+//       axios.defaults.headers.Cookie = cookie;
+//     }
+//     context.store.dispatch({
+//       type: LOAD_MY_INFO_REQUEST,
+//     });
+//     context.store.dispatch(END);
+//     await context.store.sagaTask.toPromise();
+//   });
 
 export default Signup;

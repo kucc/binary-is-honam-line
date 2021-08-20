@@ -18,23 +18,14 @@ const userSchema = mongoose.Schema({
     type: String,
     minglength: 5,
   },
-  lastname: {
-    type: String,
-    maxlength: 50,
-  },
-  role: {
-    type: Number,
-    default: 0,
-  },
-  image: String,
   token: {
     type: String,
   },
   tokenExp: {
     type: Number,
   },
-  session: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Session" }],
-  face: {
+  session: [{ type: String }],
+  faceImage: {
     type: String,
   },
 });
@@ -57,6 +48,11 @@ userSchema.pre("save", function (next) {
     next();
   }
 });
+
+// 모든 유저 객체를 불러오는 메소드
+userSchema.statics.findAll = function (callback) {
+  return this.find({}, callback);
+};
 
 userSchema.methods.comparePassword = function (plainPassword, cb) {
   bcrypt.compare(plainPassword, this.password, function (err, isMatch) {

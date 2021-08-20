@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
           name: "test2",
         },
         (err, user) => {
-          return user._id;
+          console.log(user._id);
         }
       ),
       User.findOne(
@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
           name: "test3",
         },
         (err, user) => {
-          return user._id;
+          console.log(user._id);
         }
       ),
     ],

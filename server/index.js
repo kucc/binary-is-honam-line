@@ -56,6 +56,9 @@ if (process.env.NODE_ENV === "production") {
 // test router
 app.use("/test", require("./routes/test"));
 
+// session router
+app.use("/api/sessions", require("./routes/sessions"));
+
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {

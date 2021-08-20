@@ -3,17 +3,15 @@ const mongoose = require("mongoose");
 const sessionSchema = mongoose.Schema({
   sessionName: {
     type: String,
-    required: true,
     maxlength: 50,
+    required: true,
   },
   sessionLeader: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
   },
   sessionMember: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      type: String,
     },
   ],
 

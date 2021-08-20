@@ -19,12 +19,12 @@ class attend_check:
         self.set_model()
 
     def set_decsc(self):
-        self.descs = np.load('member_descs.npy', allow_pickle=True)[()]
+        self.descs = np.load('./member_descs.npy', allow_pickle=True)[()]
 
     def set_model(self):
         self.detector = dlib.get_frontal_face_detector()
-        self.sp = dlib.shape_predictor('models/shape_predictor_68_face_landmarks.dat')
-        self.facerec = dlib.face_recognition_model_v1('models/dlib_face_recognition_resnet_model_v1.dat')
+        self.sp = dlib.shape_predictor('./models/shape_predictor_68_face_landmarks.dat')
+        self.facerec = dlib.face_recognition_model_v1('./models/dlib_face_recognition_resnet_model_v1.dat')
 
     def find_faces(self, img):
         dets = self.detector(img, 1)
@@ -86,30 +86,32 @@ class attend_check:
 
 
     def get_descs(self, js):
-        list_js = json.load(js)
+        try:
+            list_js = json.load(js)
 
-        path = './memberImg_list'
+            new_descs = {}
+            img_paths = self.get_memberlist(list_js)
 
-        new_descs = {}
-        img_paths = self.get_memberlist(list_js)
+            #path = './memberImg_list'
+            #with os.scandir(path) as list:
+            #    for data in list:
+            #        if data.is_file():
+            #            item = data.name
+            #            member = item.split('.')
+            #            img_paths[member[0]] = path + '/' + item
 
-        #with os.scandir(path) as list:
-        #    for data in list:
-        #        if data.is_file():
-        #            item = data.name
-        #            member = item.split('.')
-        #            img_paths[member[0]] = path + '/' + item
+            for name, path in img_paths.items():
+                img_path = '/uploads/' + path
+                img_bgr = cv2.imread(img_path, cv2.IMREAD_COLOR)
+                img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
 
-        for name, path in img_paths.items():
-            img_path = '/uploads/' + path
-            img_bgr = cv2.imread(img_path, cv2.IMREAD_COLOR)
-            img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+                _, img_shape, _ = self.find_faces(img_rgb)
 
-            _, img_shape, _ = self.find_faces(img_rgb)
-
-            new_descs[name] = self.encode_faces(img_rgb, img_shape)
-        np.save('member_descs.npy', new_descs)
-        print(new_descs)
+                new_descs[name] = self.encode_faces(img_rgb, img_shape)
+            np.save('member_descs.npy', new_descs)
+            print(new_descs)
+        except:
+            pass
 
     def read_img(self, img_path):
         img = cv2.imread(img_path)
@@ -148,12 +150,6 @@ class attend_check:
                         fontScale=1, color=last_found['color'], thickness=2)
 
         result = {}
-        if img.str.contains('_'):
-            session = img.split('_')
-        else :
-            session = ['unknown', 'unknown.unknown']
-        result['sessionName'] = session[0]
-        result['sessionDate'] = session[1].split('.')[0]
         result['sessionAttendMember'] = attend_member
         result_js = json.dumps(result)
 

@@ -6,7 +6,6 @@ import { createGlobalStyle } from 'styled-components';
 import { useSelector } from 'react-redux';
 import LoginForm from './LoginForm';
 import UserProfile from './UserProfile';
-import FileUpload from '../pages/FileUpload';
 
 const Global = createGlobalStyle`
     .ant-row {
@@ -46,7 +45,7 @@ const AppLayout = ({ children }) => {
                 <Row gutter={8}>
                     <Col xs={24} md={6}>
                         {me ? <UserProfile /> : <LoginForm />}
-                        <FileUpload/>
+                        
                     </Col>
                     <Col xs={24} md={12}>
                         {children}

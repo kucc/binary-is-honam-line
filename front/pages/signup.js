@@ -12,6 +12,7 @@ import useInput from '../hooks/useInput';
 import { LOAD_MY_INFO_REQUEST, REGISTER_USER_REQUEST } from '../reducers/user';
 import wrapper from '../store/configureStore';
 import FileUpload from '../components/FileUpload';
+import Navbar from '../components/Navbar';
 
 
 const ErrorMessage = styled.div`
@@ -50,20 +51,26 @@ const Signup = () => {
     const [passwordCheck, setPasswordCheck] = useState('');
     const [passwordError, setPasswordError] = useState(false);
 
-    const onSubmit = useCallback(() => {
+    const onSubmit = () => {
         if (password !== passwordCheck) {
           return setPasswordError(true);
         }
-        return dispatch({
-          type: REGISTER_USER_REQUEST,
-          data: {
-            email,
-            password,
-            name,
-            Image,
-          },
-        });
-      }, [email, password, name, passwordCheck, Image]);
+        const body = {
+            email: email,
+            passsword: password,
+            name: name,
+            faceImage: Image,
+          }
+        axios.post('/api/users/register', body)
+        .then(response => {
+            console.log(response.data)
+            if (response.data.success){
+                Router.replace('/');
+            } else {
+                alert('회원가입하는데 실패했습니다.')
+            }
+        })
+      };
     
     const onChangePasswordCheck = useCallback((e) => {
         setPasswordCheck(e.target.value);
@@ -76,7 +83,9 @@ const Signup = () => {
     };
 
     return (
-        <AppLayout>
+        <>
+        <Navbar/>
+        <div>
             <Head>
                 <title>회원가입 | KUCC</title>
             </Head>
@@ -138,7 +147,8 @@ const Signup = () => {
                     <Button type="danger" htmlType="submit" loading={signUpLoading}>가입하기</Button>
                 </div>
             </Form>
-        </AppLayout>
+        </div>
+        </>
     );
 };
 

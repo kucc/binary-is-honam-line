@@ -33,9 +33,9 @@ const LoginForm = () => {
   }, [email, password]);
 
   return (
-    <div style={{display:'grid', placeItems:'center', width:'1000px', marginTop:'200px'}}>
-      <img src={"img/kucc.png"} style={{width:'200px'}}></img>
-      <FormWrapper onFinish={onSubmitForm}>
+    <div style={{display:'grid', placeItems:'center', marginTop:'200px'}}>
+      <a href="/"><img src={"img/kucc.png"} style={{width:'200px'}}></img></a>
+      <FormWrapper onFinish={onSubmitForm} style={{width:'500px', display:'grid', gap:'20px'}}>
         <div>
           <label htmlFor="user-email">이메일</label>
           <br />
@@ -52,10 +52,8 @@ const LoginForm = () => {
             required
           />
         </div>
-        <ButtonWrapper>
           <Button type="danger" htmlType="submit" loading={logInLoading}>로그인</Button>
-          <Link href="/signup"><a><Button>회원가입</Button></a></Link>
-        </ButtonWrapper>
+          <span>계정이 없으신가요?<a href="/signup"> 회원가입</a></span>
       </FormWrapper>
 
     </div>

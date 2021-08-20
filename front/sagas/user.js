@@ -1,4 +1,4 @@
-import { all, fork, put, takeLatest, call, delay } from 'redux-saga/effects';
+import { all, fork, put, takeLatest, call } from 'redux-saga/effects';
 import axios from 'axios';
 
 import {
@@ -8,31 +8,31 @@ import {
   UPLOAD_IMAGES_FAILURE,
   UPLOAD_IMAGES_REQUEST,
   UPLOAD_IMAGES_SUCCESS,
-  LOAD_USER_FAILURE,
-  LOAD_USER_REQUEST,
-  LOAD_USER_SUCCESS,
+  REGISTER_USER_FAILURE,
+  REGISTER_USER_REQUEST,
+  REGISTER_USER_SUCCESS,
   LOG_IN_FAILURE,
   LOG_IN_REQUEST,
   LOG_IN_SUCCESS,
   LOG_OUT_FAILURE,
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
-  SIGN_UP_FAILURE,
-  SIGN_UP_REQUEST,
-  SIGN_UP_SUCCESS,
+  LOAD_USERSLIST_SUCCESS,
+  LOAD_USERSLIST_FAILURE,
+  LOAD_USERSLIST_REQUEST,
 } from '../reducers/user';
 
-function uploadImagesAPI(data) {
+// 얼굴 사진 업로드
+function uploadfaceimagesAPI(data) {
   return axios.post('/user/images', data);
 }
 
-function* uploadImages(action) {
+function* uploadfaceimages(action) {
   try {
-    yield delay(1000);
-    // const result = yield call(uploadImagesAPI, action.data);
+    const result = yield call(uploadfaceimagesAPI, action.data);
     yield put({
       type: UPLOAD_IMAGES_SUCCESS,
-      // data: result.data,
+      data: result.data,
     });
   } catch (err) {
     console.error(err);
@@ -43,60 +43,17 @@ function* uploadImages(action) {
   }
 }
 
-function loadUserAPI(data) {
-  return axios.get(`/user/${data}`);
-}
-
-function* loadUser(action) {
-  try {
-    yield delay(1000);
-    // const result = yield call(loadUserAPI, action.data);
-    yield put({
-      type: LOAD_USER_SUCCESS,
-      // data: result.data,
-    });
-  } catch (err) {
-    console.error(err);
-    yield put({
-      type: LOAD_USER_FAILURE,
-      error: err.response.data,
-    });
-  }
-}
-
-function loadMyInfoAPI() {
-  return axios.get('/user');
-}
-
-function* loadMyInfo(action) {
-  try {
-    yield delay(1000);
-    // const result = yield call(loadMyInfoAPI, action.data);
-    yield put({
-      type: LOAD_MY_INFO_SUCCESS,
-      // data: result.data,
-    });
-  } catch (err) {
-    console.error(err);
-    yield put({
-      type: LOAD_MY_INFO_FAILURE,
-      error: err.response.data,
-    });
-  }
-}
-
+// 로그인
 function logInAPI(data) {
-  return axios.post('/user/login', data);
+  return axios.post('/api/users/login', data);
 }
 
 function* logIn(action) {
   try {
-    console.log('saga logIn');
-    yield delay(1000);
-    // const result = yield call(logInAPI, action.data);
+    const result = yield call(logInAPI, action.data);
     yield put({
       type: LOG_IN_SUCCESS,
-      // data: result.data,
+      data: result.data,
     });
   } catch (err) {
     console.error(err);
@@ -107,8 +64,9 @@ function* logIn(action) {
   }
 }
 
+// 로그아웃
 function logOutAPI() {
-  return axios.post('/user/logout');
+  return axios.get('/api/users/logout');
 }
 
 function* logOut() {
@@ -126,28 +84,71 @@ function* logOut() {
   }
 }
 
-function signUpAPI(data) {
-  return axios.post('/user', data);
+// 회원가입
+function registerUserAPI(data) {
+  return axios.post('/api/users/register', data);
 }
 
-function* signUp(action) {
+function* registerUser(action) {
   try {
-    const result = yield call(signUpAPI, action.data);
+    const result = yield call(registerUserAPI, action.data);
     console.log(result);
     yield put({
-      type: SIGN_UP_SUCCESS,
+      type: REGISTER_USER_SUCCESS,
     });
   } catch (err) {
     console.error(err);
     yield put({
-      type: SIGN_UP_FAILURE,
+      type: REGISTER_USER_FAILURE,
       error: err.response.data,
     });
   }
 }
 
-function* watchLoadUser() {
-  yield takeLatest(LOAD_USER_REQUEST, loadUser);
+// 유저 정보 가져오기
+function loadUsersListAPI(data) {
+  return axios.get('/api/users/userList');
+}
+
+function* loadUsersList(action) {
+  try {
+    const result = yield call(loadUsersListAPI, action.data);
+    console.log(result);
+    yield put({
+      type: LOAD_USERSLIST_SUCCESS,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOAD_USERSLIST_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+// 내 정보 불러오기
+function loadMyInfoAPI() {
+  return axios.get('/user');
+}
+
+function* loadMyInfo(action) {
+  try {
+    const result = yield call(loadMyInfoAPI, action.data);
+    yield put({
+      type: LOAD_MY_INFO_SUCCESS,
+      data: result.data,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOAD_MY_INFO_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function* watchLoadUsersList() {
+  yield takeLatest(LOAD_USERSLIST_REQUEST, loadUsersList);
 }
 
 function* watchLoadMyInfo() {
@@ -162,21 +163,21 @@ function* watchLogOut() {
   yield takeLatest(LOG_OUT_REQUEST, logOut);
 }
 
-function* watchSignUp() {
-  yield takeLatest(SIGN_UP_REQUEST, signUp);
+function* watchRegisterUser() {
+  yield takeLatest(REGISTER_USER_REQUEST, registerUser);
 }
 
 function* watchUpLoadImages() {
-  yield takeLatest(UPLOAD_IMAGES_REQUEST, uploadImages);
+  yield takeLatest(UPLOAD_IMAGES_REQUEST, uploadfaceimages);
 }
 
 export default function* userSaga() {
   yield all([
-    fork(watchLoadUser),
+    fork(watchLoadUsersList),
     fork(watchLoadMyInfo),
     fork(watchLogIn),
     fork(watchLogOut),
-    fork(watchSignUp),
+    fork(watchRegisterUser),
     fork(watchUpLoadImages),
   ]);
 }

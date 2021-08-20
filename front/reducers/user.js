@@ -2,12 +2,9 @@
 import produce from '../util/produce';
 
 export const initialState = {
-  loadMyInfoLoading: false, // 내 정보 가져오기 시도중
-  loadMyInfoDone: false,
-  loadMyInfoError: null,
-  loadUserLoading: false, // 유저 정보 가져오기 시도중
-  loadUserDone: false,
-  loadUserError: null,
+  loadUsersListLoading: false, // 유저 정보 가져오기 시도중
+  loadUsersListDone: false,
+  loadUsersListError: null,
   logInLoading: false, // 로그인 시도중
   logInDone: false,
   logInError: null,
@@ -17,6 +14,9 @@ export const initialState = {
   signUpLoading: false, // 회원가입 시도중
   signUpDone: false,
   signUpError: null,
+  loadMyInfoLoading: false, // 내 정보 가져오기 시도중
+  loadMyInfoDone: false,
+  loadMyInfoError: null,
   me: null,
   userInfo: null,
   signUpData: {},
@@ -27,9 +27,13 @@ export const LOAD_MY_INFO_REQUEST = 'LOAD_MY_INFO_REQUEST';
 export const LOAD_MY_INFO_SUCCESS = 'LOAD_MY_INFO_SUCCESS';
 export const LOAD_MY_INFO_FAILURE = 'LOAD_MY_INFO_FAILURE';
 
-export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
-export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
-export const LOAD_USER_FAILURE = 'LOAD_USER_FAILURE';
+export const LOAD_USERSLIST_REQUEST = 'LOAD_USERSLIST_REQUEST';
+export const LOAD_USERSLIST_SUCCESS = 'LOAD_USERSLIST_SUCCESS';
+export const LOAD_USERSLIST_FAILURE = 'LOAD_USERSLIST_FAILURE';
+
+export const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
+export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
+export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE';
 
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
@@ -39,25 +43,9 @@ export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
 export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE';
 
-export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
-export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
-export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE';
-
 export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
 export const UPLOAD_IMAGES_SUCCESS = 'UPLOAD_IMAGES_SUCCESS';
 export const UPLOAD_IMAGES_FAILURE = 'UPLOAD_IMAGES_FAILURE';
-
-export const REMOVE_FOLLOWER_REQUEST = 'REMOVE_FOLLOWER_REQUEST';
-export const REMOVE_FOLLOWER_SUCCESS = 'REMOVE_FOLLOWER_SUCCESS';
-export const REMOVE_FOLLOWER_FAILURE = 'REMOVE_FOLLOWER_FAILURE';
-
-export const LOAD_FOLLOWINGS_REQUEST = 'LOAD_FOLLOWINGS_REQUEST';
-export const LOAD_FOLLOWINGS_SUCCESS = 'LOAD_FOLLOWINGS_SUCCESS';
-export const LOAD_FOLLOWINGS_FAILURE = 'LOAD_FOLLOWINGS_FAILURE';
-
-export const LOAD_FOLLOWERS_REQUEST = 'LOAD_FOLLOWERS_REQUEST';
-export const LOAD_FOLLOWERS_SUCCESS = 'LOAD_FOLLOWERS_SUCCESS';
-export const LOAD_FOLLOWERS_FAILURE = 'LOAD_FOLLOWERS_FAILURE';
 
 export const ADD_POST_TO_ME = 'ADD_POST_TO_ME';
 export const REMOVE_POST_OF_ME = 'REMOVE_POST_OF_ME';
@@ -94,19 +82,19 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.loadMyInfoLoading = false;
       draft.loadMyInfoError = action.error;
       break;          
-    case LOAD_USER_REQUEST:
-      draft.loadUserLoading = true;
-      draft.loadUserError = null;
-      draft.loadUserDone = false;
+    case LOAD_USERSLIST_REQUEST:
+      draft.loadUsersListLoading = true;
+      draft.loadUsersListError = null;
+      draft.loadUsersListDone = false;
       break;
-    case LOAD_USER_SUCCESS:
-      draft.loadUserLoading = false;
+    case LOAD_USERSLIST_SUCCESS:
+      draft.loadUsersListLoading = false;
       draft.userInfo = action.data;
-      draft.loadUserDone = true;
+      draft.loadUsersListDone = true;
       break;
-    case LOAD_USER_FAILURE:
-      draft.loadUserLoading = false;
-      draft.loadUserError = action.error;
+    case LOAD_USERSLIST_FAILURE:
+      draft.loadUsersListLoading = false;
+      draft.loadUsersListError = action.error;
       break;    
     case LOG_IN_REQUEST:
       draft.logInLoading = true;
@@ -136,16 +124,16 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.logOutLoading = false;
       draft.logOutError = action.error;
       break;
-    case SIGN_UP_REQUEST:
+    case REGISTER_USER_REQUEST:
       draft.signUpLoading = true;
       draft.signUpError = null;
       draft.signUpDone = false;
       break;
-    case SIGN_UP_SUCCESS:
+    case REGISTER_USER_SUCCESS:
       draft.signUpLoading = false;
       draft.signUpDone = true;
       break;
-    case SIGN_UP_FAILURE:
+    case REGISTER_USER_FAILURE:
       draft.signUpLoading = false;
       draft.signUpError = action.error;
       break;

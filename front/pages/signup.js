@@ -80,7 +80,7 @@ const Signup = () => {
     return (
         <AppLayout>
             <Head>
-                <title>회원가입 | Nodebird</title>
+                <title>회원가입 | KUCC</title>
             </Head>
             <Form
                 style={{ width: 400, margin: 'auto', marginTop: 10 }} 

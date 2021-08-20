@@ -108,7 +108,7 @@ class attend_check:
                 _, img_shape, _ = self.find_faces(img_rgb)
 
                 new_descs[name] = self.encode_faces(img_rgb, img_shape)
-            np.save('member_descs.npy', new_descs)
+            np.save('./member_descs.npy', new_descs)
             print(new_descs)
         except:
             pass

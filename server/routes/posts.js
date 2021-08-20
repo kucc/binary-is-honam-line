@@ -5,6 +5,7 @@ const { spawn } = require("child_process");
 const { Session } = require("../models/Session");
 const { User } = require("../models/User");
 const { upload } = require("./utils/imageUpload");
+const { Post } = require("../models/Post");
 
 // 포스트 생성
 // {
@@ -15,17 +16,30 @@ const { upload } = require("./utils/imageUpload");
 // 형태로 보내기
 
 router.post("/create", (req, res) => {
-  User.findAll((err, userList) => {
-    if (err) {
-      return res.json({ success: false, err });
-    } else {
-      const pyProg = spawn("python3", [
-        "./utils/faceDetection/make_descs.py",
-        Json.parse(`{${userList}}`),
-      ]);
-    }
+  const pyProg = spawn("python3", [
+    "./utils/faceDetection/run_dect.py",
+    req.body.imageAddress,
+  ]);
+  pyProg.stdout.on("data", data => {
+    console.log(data);
+    Session.findOne({ sessionName: req.body.sessionName }, (err, session) => {
+      let attendance = [];
+      session.sessionMember.forEach(item => {
+        attendance.push({ userName: item, attend: false });
+      });
+      data.sessionAttendMember.forEach(item => {
+        attendance.find(e => {
+          return e.userName == item;
+        }).attend = true;
+      });
+      console.log(attendance);
+      req.body.attendance = attendance;
+    });
   });
   const post = new Post(req.body);
+  post.save(err => {
+    res.json({ success: true });
+  });
 });
 
 module.exports = router;

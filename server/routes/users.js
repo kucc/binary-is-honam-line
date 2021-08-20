@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { User } = require("../models/User");
-
+const { spawn } = require("child_process");
 const { auth } = require("../middleware/auth");
 const { upload } = require("./utils/imageUpload");
 
@@ -24,12 +24,19 @@ router.get("/auth", auth, (req, res) => {
 
 router.post("/register", (req, res) => {
   const user = new User(req.body);
-
+  console.log(user);
   user.save((err, doc) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).json({
       success: true,
     });
+  });
+  User.findAll((err, userList) => {
+    if (err) {
+      return res.json({ success: false, err });
+    } else {
+      spawn("python3", ["./utils/faceDetection/make_descs.py", { userList }]);
+    }
   });
 });
 

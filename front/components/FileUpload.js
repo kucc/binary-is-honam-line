@@ -37,6 +37,9 @@ function FileUpload(props) {
     props.refreshFunction(newArray)
     setimageExistence(true)
   }
+  if (imageArray[0]){
+    console.log(image_SERVER+imageArray[0])
+  }
 
   return (
     <>

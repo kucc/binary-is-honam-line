@@ -36,16 +36,47 @@ router.get("/findSession", (req, res) => {
 
 // 세션 수정하기
 router.post("/updateSession", (req, res) => {
-  let sessionName = req.query.name;
-  Session.findOneAndUpdate(
-    { sessionName: sessionName },
-    {
-      sessionName: req.body.sessionName,
-      sessionLeader: req.body.sessionLeader,
-      sessionMember: req.body.sessionMember,
-      sessionDate: req.body.sessionDate,
+  let _sessionName = req.query.name;
+  let [sessionName, sessionLeader, sessionMember, sessionDate] = [
+    req.body.sessionName,
+    req.body.sessionLeader,
+    req.body.sessionMember,
+    req.body.sessionDate,
+  ];
+  Session.findOne({ sessionName: _sessionName }, (err, session) => {
+    if (err) {
+      return res.json({ err });
+    } else {
+      session.sessionName = sessionName ? sessionName : session.sessionName;
+      session.sessionLeader = sessionLeader
+        ? sessionLeader
+        : session.sessionLeader;
+      session.sessionMember = sessionMember
+        ? sessionMember
+        : session.sessionMember;
+      session.sessionDate = sessionDate ? sessionDate : session.sessionDate;
+      session.save((err, doc) => {
+        if (err) {
+          res.json({ success: false, err });
+        } else {
+          res.status(200).json({ success: true });
+        }
+      });
     }
-  );
+  });
+});
+
+// 세션 삭제하기 (일단 보류)
+router.get("/deleteSession", (req, res) => {
+  let _sessionName = req.query.name;
+  console.log(_sessionName);
+  Session.deleteOne({ sessionName: _sessionName }, err => {
+    if (err) {
+      res.json({ success: false, err });
+    } else {
+      res.status(200).json({ success: true });
+    }
+  });
 });
 
 router.post("/image", (req, res) => {
